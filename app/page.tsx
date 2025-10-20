@@ -1,301 +1,154 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
-const stats = [
-  { value: '120+', label: 'інтерактивних уроків' },
-  { value: '35 000', label: 'активних студентів' },
-  { value: '98%', label: 'задоволених випускників' }
-];
-
-const courses = [
+const featuredCourses = [
   {
-    title: 'UI/UX дизайн',
-    category: 'Дизайн',
-    description: 'Створюйте зручні інтерфейси, працюйте з прототипами та тестуванням користувачів.',
-    badge: 'Популярний курс'
-  },
-  {
-    title: 'Frontend розробка',
-    category: 'Програмування',
+    title: 'Frontend Engineering Fundamentals',
+    category: 'Web Development',
+    level: 'Beginner',
     description:
-      'Навчіться працювати з HTML, CSS, TypeScript та сучасними фреймворками для створення веб-додатків.',
-    badge: 'Новий курс'
+      'Master the essentials of HTML, CSS, and TypeScript while building responsive interfaces from scratch.'
   },
   {
-    title: 'Маркетинг в соцмережах',
-    category: 'Маркетинг',
-    description: 'Освойте контент-стратегії, аналітику та рекламні кампанії для розвитку бренду.',
-    badge: 'Навчання у міні-групах'
-  },
-  {
-    title: 'Data Science',
-    category: 'Аналітика',
+    title: 'Product Design Studio',
+    category: 'Design',
+    level: 'Intermediate',
     description:
-      'Працюйте з даними, будуйте моделі машинного навчання та приймайте рішення на основі аналітики.',
-    badge: 'Проєкти з менторами'
+      'Blend user research with prototyping techniques to craft experiences that learners love to use.'
   },
   {
-    title: 'Project Management',
-    category: 'Менеджмент',
-    description: 'Опануйте планування, роботу з командами та впровадження Agile-підходів.',
-    badge: 'Практичні кейси'
-  },
-  {
-    title: 'Англійська для ІТ',
-    category: 'Мови',
-    description: 'Покращуйте комунікацію в міжнародних командах та готуйтеся до технічних інтерв'ю.',
-    badge: 'Живі розмовні клуби'
+    title: 'Data Science with Python',
+    category: 'Data & AI',
+    level: 'Advanced',
+    description:
+      'Work with real-world datasets to uncover insights, build predictive models, and deploy analytics pipelines.'
   }
 ];
 
-const reasons = [
+const learningTracks = [
   {
-    title: 'Живі онлайн заняття',
-    description:
-      'Приєднуйтесь до інтерактивних сесій з досвідченими викладачами та спілкуйтесь у чаті в режимі реального часу.'
+    title: 'STEM Foundations',
+    description: 'Interactive science and math pathways for middle and high school learners.'
   },
   {
-    title: 'Індивідуальні плани',
-    description:
-      'Складіть власний маршрут навчання, комбінуючи модулі різної складності та напрямів.'
+    title: 'Career Switch Accelerators',
+    description: 'Fast-track bootcamps with mentor feedback and career coaching for professionals.'
   },
   {
-    title: 'Підтримка наставників',
-    description:
-      'Отримуйте фідбек щодо домашніх завдань, кар'єрні поради та допомогу у створенні портфоліо.'
-  }
-];
-
-const steps = [
-  {
-    title: 'Обирайте напрям',
-    description: 'Порівнюйте програми, знайомтесь з планами занять і відгуками студентів.'
-  },
-  {
-    title: 'Реєструйтесь на курс',
-    description: 'Заповніть коротку заявку та отримайте доступ до першого безкоштовного уроку.'
-  },
-  {
-    title: 'Навчайтесь у власному темпі',
-    description: 'Комбінуйте відео, практичні завдання та живі зустрічі з експертами.'
-  }
-];
-
-const testimonials = [
-  {
-    quote:
-      'Після проходження курсу з дизайну я зібрала перше портфоліо та отримала пропозицію стажування вже за два тижні.',
-    name: 'Олена, Київ',
-    role: 'Випускниця курсу «UI/UX дизайн»'
-  },
-  {
-    quote:
-      'Платформа дуже зручна: записи, конспекти та перевірені завдання завжди під рукою. Ментор допоміг підготуватися до співбесіди.',
-    name: 'Максим, Львів',
-    role: 'Студент програми «Frontend розробка»'
-  },
-  {
-    quote:
-      'Сподобались практичні завдання та спільнота. Завдяки підтримці кураторів я зміг змінити професію на маркетолога.',
-    name: 'Ірина, Дніпро',
-    role: 'Випускниця курсу «Маркетинг в соцмережах»'
-  }
-];
-
-const faqs = [
-  {
-    question: 'Як проходять заняття на платформі?',
-    answer:
-      'Усі курси містять відеоуроки, практичні завдання та живі зустрічі. Ви можете навчатися у зручний час і ставити питання викладачам у спільноті.'
-  },
-  {
-    question: 'Чи є розстрочка або можливість оплати частинами?',
-    answer:
-      'Так, ви можете обрати помісячну оплату або скористатися програмою розстрочки від наших фінансових партнерів.'
-  },
-  {
-    question: 'Чи отримую я сертифікат після завершення?',
-    answer:
-      'Після успішного виконання всіх модулів та фінального проєкту ви отримуєте сертифікат EduWay, який підтверджує нові навички.'
+    title: 'Campus Partnerships',
+    description: 'White-label portals that let schools launch blended programs in weeks, not months.'
   }
 ];
 
 export default function HomePage() {
   return (
-    <main className="page">
-      <header className="topbar">
-        <Link className="topbar__brand" href="#hero">
-          <span className="brand-mark" aria-hidden>EW</span>
-          EduWay School
-        </Link>
-        <nav className="topbar__nav" aria-label="Основна навігація">
-          <Link href="#courses">Курси</Link>
-          <Link href="#reasons">Переваги</Link>
-          <Link href="#testimonials">Відгуки</Link>
-          <Link href="#faq">FAQ</Link>
-        </nav>
-        <Link className="topbar__cta" href="mailto:hello@eduway.school">
-          Написати нам
-        </Link>
-      </header>
-
-      <section id="hero" className="hero">
-        <div className="hero__content">
-          <p className="hero__eyebrow">Онлайн освіта для підлітків та дорослих</p>
-          <h1 className="hero__title">Навчайтесь із задоволенням</h1>
-          <p className="hero__subtitle">
-            EduWay — це сучасна платформа з інтерактивними курсами, менторами та дружньою спільнотою.
-            Обирайте напрям, прокачуйте навички та отримуйте підтримку на кожному етапі.
-          </p>
-          <div className="hero__actions">
-            <Link className="button" href="#courses">
-              Переглянути курси
-            </Link>
-            <Link className="button button--secondary" href="#contact">
-              Консультація
-            </Link>
-          </div>
-          <ul className="hero__stats">
-            {stats.map((item) => (
-              <li key={item.label}>
-                <span>{item.value}</span>
-                <p>{item.label}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="hero__visual" aria-hidden>
-          <div className="hero-card hero-card--accent">
-            <span className="hero-card__badge">Новий потік</span>
-            <h3>Курс «Frontend розробка»</h3>
-            <p>Старт 12 серпня · 4 міс.</p>
-            <div className="hero-card__avatars">
-              <span className="avatar" />
-              <span className="avatar" />
-              <span className="avatar" />
+    <main className="landing">
+      <header className="hero">
+        <div className="hero__badge">New cohort enrollments are now open</div>
+        <div className="hero__grid">
+          <div className="hero__content">
+            <Image
+              src="/eduway-logo.svg"
+              width={160}
+              height={40}
+              alt="EduWay School logo"
+              className="hero__logo"
+              priority
+            />
+            <h1 className="hero__title">Learning that adapts to every student</h1>
+            <p className="hero__subtitle">
+              EduWay School brings together expert-led courses, adaptive practice, and real-time
+              mentorship so your community can learn, build, and grow—wherever they are.
+            </p>
+            <div className="hero__actions">
+              <Link className="button" href="#courses">
+                Browse courses
+              </Link>
+              <Link className="button button--secondary" href="#tracks">
+                Explore learning tracks
+              </Link>
             </div>
           </div>
-          <div className="hero-card hero-card--secondary">
-            <h4>Сесія з ментором</h4>
-            <p>Заплановано на п'ятницю, 18:00</p>
-            <button type="button">Долучитись</button>
+          <div className="hero__summary">
+            <div className="summary-card">
+              <h2>Launch a digital campus in days</h2>
+              <p>
+                Configure cohorts, enroll students, and monitor progress with dashboards designed for
+                academic teams and administrators.
+              </p>
+            </div>
           </div>
-          <div className="hero__shape" />
         </div>
+      </header>
+
+      <section className="stats" aria-label="EduWay impact metrics">
+        <article className="stat-card">
+          <h3>120+</h3>
+          <p>Modular lessons crafted with subject-matter experts</p>
+        </article>
+        <article className="stat-card">
+          <h3>35K</h3>
+          <p>Learners leveling up their skills across our programs</p>
+        </article>
+        <article className="stat-card">
+          <h3>98%</h3>
+          <p>Instructor satisfaction with our teaching toolkit</p>
+        </article>
       </section>
 
-      <section id="courses" className="section courses" aria-labelledby="courses-title">
-        <div className="section__heading">
-          <h2 id="courses-title">Наші курси</h2>
-          <p>
-            Обирайте програму, що відповідає вашим цілям, — від стартових модулів до професійних програм з
-            менторською підтримкою.
-          </p>
+      <section id="courses" className="course-grid" aria-labelledby="course-heading">
+        <div className="section-heading">
+          <h2 id="course-heading">Featured courses</h2>
+          <p>Mix and match on-demand lessons with live sessions to fit any learning journey.</p>
         </div>
-        <div className="courses__grid">
-          {courses.map((course) => (
+        <div className="course-grid__items">
+          {featuredCourses.map((course) => (
             <article key={course.title} className="course-card">
-              <div className="course-card__badge">{course.badge}</div>
-              <div className="course-card__category">{course.category}</div>
+              <p className="course-card__meta">
+                <span>{course.category}</span>
+                <span>&bull;</span>
+                <span>{course.level}</span>
+              </p>
               <h3>{course.title}</h3>
               <p>{course.description}</p>
-              <Link className="course-card__link" href="#contact">
-                Дізнатися більше
-              </Link>
+              <button type="button" className="link-button">
+                View syllabus
+              </button>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="reasons" className="section reasons" aria-labelledby="reasons-title">
-        <div className="section__heading">
-          <h2 id="reasons-title">Чому варто обрати нас?</h2>
-          <p>Створюємо комфортні умови для навчання та зростання кожного студента.</p>
-        </div>
-        <div className="reasons__grid">
-          {reasons.map((reason) => (
-            <article key={reason.title} className="reason-card">
-              <h3>{reason.title}</h3>
-              <p>{reason.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section steps" aria-labelledby="steps-title">
-        <div className="section__heading">
-          <h2 id="steps-title">Зробіть перший крок вже сьогодні!</h2>
-          <p>Простий шлях від знайомства з платформою до нової професії.</p>
-        </div>
-        <div className="steps__grid">
-          {steps.map((step, index) => (
-            <article key={step.title} className="step-card">
-              <span className="step-card__index">{index + 1}</span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="testimonials" className="section testimonials" aria-labelledby="testimonials-title">
-        <div className="section__heading">
-          <h2 id="testimonials-title">Що говорять наші студенти?</h2>
-          <p>Справжні історії тих, хто вже втілив свою мрію з EduWay.</p>
-        </div>
-        <div className="testimonials__grid">
-          {testimonials.map((testimonial) => (
-            <figure key={testimonial.name} className="testimonial-card">
-              <blockquote>“{testimonial.quote}”</blockquote>
-              <figcaption>
-                <strong>{testimonial.name}</strong>
-                <span>{testimonial.role}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section id="faq" className="section faq" aria-labelledby="faq-title">
-        <div className="section__heading">
-          <h2 id="faq-title">Маєте питання?</h2>
-          <p>Зібрали відповіді на найпоширеніші запитання щодо навчання.</p>
-        </div>
-        <div className="faq__list">
-          {faqs.map((faq) => (
-            <details key={faq.question}>
-              <summary>{faq.question}</summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      <section id="contact" className="contact">
-        <div className="contact__content">
-          <h2>Готові приєднатися до EduWay?</h2>
+      <section id="tracks" className="tracks" aria-labelledby="track-heading">
+        <div className="section-heading">
+          <h2 id="track-heading">Learning tracks for every stage</h2>
           <p>
-            Залиште заявку на консультацію, і ми допоможемо обрати програму, що найкраще відповідає вашим
-            цілям.
+            Curated pathways combine foundational theory, practical projects, and community feedback
+            to drive meaningful outcomes.
           </p>
         </div>
-        <Link className="button" href="mailto:hello@eduway.school">
-          Залишити заявку
-        </Link>
+        <div className="tracks__items">
+          {learningTracks.map((track) => (
+            <article key={track.title} className="track-card">
+              <h3>{track.title}</h3>
+              <p>{track.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <footer className="footer">
-        <div>
-          <span className="brand-mark" aria-hidden>
-            EW
-          </span>
-          <p>EduWay School · Онлайн освіта для сучасних професій</p>
+      <section className="cta">
+        <div className="cta__inner">
+          <h2>Ready to create your EduWay experience?</h2>
+          <p>
+            Partner with us to deliver a branded platform, personalized analytics, and integrations
+            that plug into your existing systems.
+          </p>
+          <Link className="button" href="mailto:hello@eduway.school">
+            Talk to our team
+          </Link>
         </div>
-        <div className="footer__info">
-          <a href="tel:+380441234567">+38 (044) 123 45 67</a>
-          <a href="mailto:hello@eduway.school">hello@eduway.school</a>
-          <p>© {new Date().getFullYear()} EduWay. Усі права захищено.</p>
-        </div>
-      </footer>
+      </section>
     </main>
   );
 }
