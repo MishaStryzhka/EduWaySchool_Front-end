@@ -124,6 +124,8 @@ button {
   border-radius: 36px;
   overflow: hidden;
   box-shadow: 0 40px 80px -50px rgba(15, 23, 42, 0.4);
+}
+
 .landing {
   width: min(1120px, 100%);
   padding: 3.5rem 1.5rem 4rem;
