@@ -1,49 +1,23 @@
-# EduWaySchool Front-end
+# EduWay School
 
-EduWay School is an online learning platform that brings together curated courses, adaptive
-practice, and collaborative cohorts. This repository now uses
-[Next.js](https://nextjs.org/) with [React](https://react.dev/) and
-[TypeScript](https://www.typescriptlang.org/) to deliver a scalable foundation for the web
-experience.
+Онлайн-школа практичної чеської для українців. [Відкрити сайт](https://eduwayschool.com/) · [Пройти пробний урок](https://eduwayschool.com/uroky/domluvit-si-termin) · [Дорожня карта](./ROADMAP.md)
 
-## Getting started
+## Перший випуск
 
-### Prerequisites
+Відвідувач слухає чеський діалог, перевіряє розуміння, вибирає ввічливу репліку й пише власну відповідь для самоперевірки. Крок уроку зберігається локально в браузері. Текст особистого повідомлення лише відображається на екрані й не надсилається на сервер.
 
-- [Node.js](https://nodejs.org/) 18 or later
-- [npm](https://www.npmjs.com/) 9 or later (bundled with Node.js)
+## Локальний запуск
 
-### Installation
+Проєкт використовує Next.js App Router, React і TypeScript. Для розробки підійде Node.js 22. Встановіть залежності й запустіть локальний сервер.
 
-```bash
-npm install
+```sh
+npm ci
+npm run dev
 ```
 
-### Available scripts
+Для перевірки перед публікацією запустіть `npm run lint` та `npm run build`. Vercel публікує гілку `main`. Реєстрацією домену й DNS керує Cloudflare. Подальший навчальний API та редакторська адмінка заплановані на Django.
 
-- `npm run dev` – start the Next.js development server with hot reloading.
-- `npm run build` – generate an optimized production build of the application.
-- `npm run start` – serve the previously generated production build.
-- `npm run lint` – run ESLint with the recommended Next.js rules.
-- `npm run format` – format the codebase using Prettier.
+## Матеріали
 
-## Project structure
-
-```
-├── app/                 # App Router pages, layouts, and global styles
-│   ├── layout.tsx       # Root layout shared across all routes
-│   ├── page.tsx         # Landing page for the EduWay learning platform
-│   └── globals.css      # Global styles imported by the root layout
-├── public/              # Static assets served as-is
-│   └── eduway-logo.svg  # EduWay brand mark used in the UI
-├── next.config.mjs      # Next.js configuration
-├── next-env.d.ts        # TypeScript definitions for Next.js features
-├── package.json         # Dependencies and development scripts
-└── tsconfig.json        # TypeScript configuration tuned for Next.js
-```
-
-## Next steps
-
-- Flesh out course catalog pages, enrollment flows, and dashboard experiences.
-- Integrate data fetching (REST, GraphQL, or tRPC) backed by the EduWay API.
-- Add automated tests (unit, integration, and end-to-end) to safeguard future changes.
+- Фото Праги — Alex Muzenhardt, Unsplash. Оптимізована копія у форматі WebP. [Оригінал](https://unsplash.com/photos/coUAHTugtNE) · [Ліцензія](https://unsplash.com/license)
+- Чеський діалог озвучено синтезованим голосом Jirka за допомогою Piper. Аудіо постачається разом із сайтом і відтворюється без зовнішнього голосового сервісу. [Картка голосу](https://huggingface.co/rhasspy/piper-voices/blob/v1.0.0/cs/cs_CZ/jirka/medium/MODEL_CARD)
