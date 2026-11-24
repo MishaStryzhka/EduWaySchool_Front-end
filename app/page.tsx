@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import LessonList from './lesson-list';
 import { lessonPath } from './course';
 
 export default function Home() {
@@ -45,28 +46,10 @@ export default function Home() {
 
       <section className="route-section" id="uroky">
         <p className="eyebrow">
-          <span className="line" /> Уроки
+          <span className="line" /> Курс · A1–A2
         </p>
-        <h2>Перша розмова</h2>
-        <Link href={lessonPath} className="lesson-card">
-          <div className="lesson-stamp" aria-hidden="true">
-            <span lang="cs">pátek</span>
-            <strong>
-              15<span>:</span>30
-            </strong>
-          </div>
-          <div className="card-copy">
-            <span className="meta">A1–A2 · Побут і робота</span>
-            <h3>Домовитися про час</h3>
-            <p>
-              Майстер і клієнт узгоджують візит. Послухай, на який час вони
-              домовилися, і запропонуй свій варіант.
-            </p>
-          </div>
-          <span className="card-go" aria-hidden="true">
-            ↗
-          </span>
-        </Link>
+        <h2>Щоденні розмови</h2>
+        <LessonList />
       </section>
 
       <section className="method" id="metod">

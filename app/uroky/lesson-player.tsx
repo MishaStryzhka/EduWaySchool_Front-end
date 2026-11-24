@@ -2,13 +2,20 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { dialogue, questions } from '../../course';
+import type { Lesson } from '../course';
 
 type Step = 0 | 1 | 2 | 3;
-const storageKey = 'eduway:domluvit-si-termin:v1';
 const stepNames = ['Слухання', 'Відповідь', 'Практика'];
 
-export default function Lesson() {
+export default function LessonPlayer({
+  lesson,
+  next,
+}: {
+  lesson: Lesson;
+  next?: Pick<Lesson, 'slug' | 'title'>;
+}) {
+  const { dialogue, questions } = lesson;
+  const storageKey = `eduway:${lesson.slug}:v1`;
   const [step, setStep] = useState<Step>(0);
   const [ready, setReady] = useState(false);
   const [choice, setChoice] = useState<number | null>(null);
@@ -27,7 +34,7 @@ export default function Lesson() {
       /* Storage is optional for guests. */
     }
     setReady(true);
-  }, []);
+  }, [storageKey]);
 
   useEffect(() => {
     if (shouldFocus.current) heading.current?.focus();
@@ -70,12 +77,12 @@ export default function Lesson() {
           <h2 ref={heading} tabIndex={-1}>
             Послухай розмову
           </h2>
-          <p>Майстер телефонує клієнту, щоб домовитися про візит.</p>
+          <p>{lesson.scene}</p>
           <audio
             controls
             preload="metadata"
-            aria-label="Чеський діалог про час візиту"
-            src="/audio/domluvit-si-termin.mp3"
+            aria-label={`Діалог чеською · ${lesson.title}`}
+            src={`/audio/${lesson.slug}.mp3`}
           />
           <details className="transcript">
             <summary>Текст діалогу та переклад</summary>
@@ -143,12 +150,9 @@ export default function Lesson() {
           <h2 ref={heading} tabIndex={-1}>
             Твоя репліка
           </h2>
-          <p>
-            У п’ятницю ти зайнятий або зайнята. Напиши клієнту чеською й
-            запропонуй прийти у вівторок о десятій.
-          </p>
+          <p>{lesson.task}</p>
           <label className="reply-label" htmlFor="reply">
-            Повідомлення клієнту
+            {lesson.label}
           </label>
           <textarea
             id="reply"
@@ -158,21 +162,15 @@ export default function Lesson() {
               setReply(e.target.value);
               setShowSample(false);
             }}
-            placeholder="Dobrý den, …"
+            placeholder={lesson.starter}
             rows={3}
             maxLength={800}
           />
           {showSample ? (
             <div className="sample">
               <strong>Зразок для самоперевірки</strong>
-              <p lang="cs">
-                Dobrý den, v pátek bohužel nemůžu. Můžu přijít v úterý v deset
-                hodin?
-              </p>
-              <p>
-                У повідомленні має бути зрозуміло, що п’ятниця не підходить, а
-                зручний час — вівторок о десятій. Формулювання може бути іншим.
-              </p>
+              <p lang="cs">{lesson.sample}</p>
+              <p>{lesson.check}</p>
               <button className="action" onClick={() => go(3)}>
                 Завершити урок <span aria-hidden="true">✓</span>
               </button>
@@ -196,18 +194,21 @@ export default function Lesson() {
           <h2 ref={heading} tabIndex={-1}>
             Урок завершено!
           </h2>
-          <p>
-            Тепер ти можеш запропонувати клієнту інший час. Збережи в пам’яті цю
-            фразу.
-          </p>
-          <blockquote lang="cs">Hodilo by se vám úterý v deset?</blockquote>
-          <p>Чи підходить вам вівторок о десятій?</p>
-          <button className="action" onClick={() => go(0)}>
-            Пройти ще раз <span aria-hidden="true">↻</span>
-          </button>
-          <Link className="text-link" href="/">
-            На головну
-          </Link>
+          <p>Фраза, яку можна взяти з собою</p>
+          <blockquote lang="cs">{lesson.phrase}</blockquote>
+          <p>{lesson.translation}</p>
+          <div className="completion-actions">
+            <Link
+              className="action"
+              href={next ? '/uroky/' + next.slug : '/uroky'}
+            >
+              {next ? 'Далі · ' + next.title : 'До всіх уроків'}{' '}
+              <span aria-hidden="true">→</span>
+            </Link>
+            <button className="back-step" onClick={() => go(0)}>
+              Пройти ще раз
+            </button>
+          </div>
         </div>
       )}
       {(step === 1 || step === 2) && (

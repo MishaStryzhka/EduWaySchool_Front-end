@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { lessonPath } from './course';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -40,11 +39,11 @@ export default function RootLayout({
               EduWay<span className="brand-school">School</span>
             </Link>
             <nav aria-label="Головне меню">
-              <Link href="/#uroky">Уроки</Link>
+              <Link href="/uroky">Уроки</Link>
               <Link href="/#metod">Як навчаємося</Link>
             </nav>
-            <Link className="header-action" href={lessonPath}>
-              До уроку <span aria-hidden="true">↗</span>
+            <Link className="header-action" href="/uroky">
+              До курсу <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </header>
